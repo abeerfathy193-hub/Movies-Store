@@ -28,6 +28,9 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
+# Visual Studio 
+appsettings.json
+
 # Miscellaneous
 /.angular/cache
 .sass-cache/
@@ -41,3 +44,6 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Project files
+src/app/services/movies-tmdb.ts
