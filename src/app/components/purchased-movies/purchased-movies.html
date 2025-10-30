@@ -1,0 +1,33 @@
+<div class="container my-5">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4 fw-bold text-center mb-2 text-white">Your Purchased Movies</h1>
+      <p class="text-center text-white">Enjoy your purchased collection anytime!</p>
+    </div>
+  </div>
+
+  <!-- Movie Grid -->
+  @if (allPurchasedMoviesData.length > 0) {
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      @for (movie of allPurchasedMoviesData; track movie.id) {
+        <div class="col">
+          <app-purchased-movie-card
+            [movie]="movie"
+          ></app-purchased-movie-card>
+        </div>
+      }
+    </div>
+  } @else {
+    <!-- Empty State -->
+    <div class="row">
+      <div class="col-12">
+        <div class="alert alert-info text-center py-5 border-0 shadow-sm" role="alert">
+          <i class="bi bi-bag-x display-1 text-info mb-3"></i>
+          <h4 class="alert-heading">No Purchased Movies Yet</h4>
+          <p class="mb-0">Your purchases will appear here once you buy your first movie.</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

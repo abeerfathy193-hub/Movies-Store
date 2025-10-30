@@ -1,0 +1,50 @@
+<div class="container1">
+    <h1>Welcome</h1>
+
+    <div [formGroup]="logForm" id="loginForm">
+        <div class="form-group">
+            <label for="email">Email Or Username</label>
+            <input type="email" formControlName="userormail" class="form-control  btn2" placeholder="Email" required
+                autocomplete="email" #email>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" class="form-control   btn2" formControlName="Password" type="password"
+                placeholder="Password" required autocomplete="current-password" #password>
+        </div>
+        <div class="form-group">
+
+            <input type="checkbox" name="RememberMe" class="check" id="RememberMe" #rememberMe>
+            <label class="chk" for="RememberMe">Remember Me</label>
+        </div>
+
+        <input value="LOGIN" type="button" class="btn1" [disabled]="formValid"
+            (click)="login(email.value,password.value,rememberMe.checked)">
+        <div [ngStyle]="{'display':!log&&!formValid&&pressed?'block':'none'}" class="invalid-feedback">Invalid Email OR
+            Password </div>
+        <div class="links">
+            <a routerLink="/Register" class="link">Sign Up</a>
+        </div>
+    </div>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">OR LOGIN WITH</span>
+    </div>
+
+    <div class="social-buttons">
+        <app-google-login></app-google-login>
+        <app-facebook-login></app-facebook-login>
+        <!-- <button type="button" class="social-btn" aria-label="Login with Google">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+  <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+</svg>
+            </button>
+            <button type="button" class="social-btn" aria-label="Login with Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+            </button> -->
+    </div>
+</div>

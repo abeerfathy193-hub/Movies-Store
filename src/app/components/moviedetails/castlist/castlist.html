@@ -1,0 +1,13 @@
+<!-- Cast Section -->
+<div class="movie-cast">
+  <h2 class="fw-bold mb-3">Cast</h2>
+  <div class="row g-3 justify-content-center">
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2" *ngFor="let actor of cast">
+      <div class="cast-member p-2 h-100 d-flex flex-column align-items-center">
+        <!-- <img [src]="actor.photo" alt="{{ actor.name }}" class="cast-photo img-fluid rounded-3 mb-2" /> -->
+        <p class="actor-name text-center mb-0">{{ actor }}</p>
+        <!-- <p class="actor-role text-center small">as {{ actor.role }}</p> -->
+      </div>
+    </div>
+  </div>
+</div>

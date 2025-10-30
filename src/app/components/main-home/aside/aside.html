@@ -1,0 +1,8 @@
+<div class="aside-card">
+  <div class="genre-container">
+    <div class="genre-card" *ngFor="let genre of genres" (click)="selectGenre(genre.name)">
+      <i [class]="genre.icon"></i>
+      <span>{{ genre.name }}</span>
+    </div>
+  </div>
+</div>

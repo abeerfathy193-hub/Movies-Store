@@ -1,0 +1,16 @@
+<!-- Movie Section -->
+    <div *ngIf="hasPurchased" class="movie-section text-center mt-5">
+        <hr class="my-4" />
+        <h2 class="fw-bold mb-3">🎞 Watch Full Movie</h2>
+        <div class="ratio ratio-16x9">
+        <iframe
+            *ngIf="safeVideoUrl"
+            [src]="safeVideoUrl"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        </div>
+    </div>
+
+    <!--lw msh link youtube (.mp4) mslan-->
+    <!--<video *ngIf="movie.videoUrl" [src]="movie.videoUrl" controls autoplay></video>-->

@@ -1,0 +1,27 @@
+.not-found {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.error-content {
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glass-effect {
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+}
+
+.btn-outline-danger {
+  border-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}

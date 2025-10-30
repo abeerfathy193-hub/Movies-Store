@@ -1,0 +1,87 @@
+<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel"
+  data-bs-interval="3000">
+  <div class="carousel-inner">
+
+    <div *ngFor="let slide of top5Movies; let i = index" class="carousel-item" [class.active]="i === 0">
+      <app-hero-card [id]="slide.id" [image]="slide.full_backdrop_path" [title]="slide.title" [genres]="slide.genre_names"
+        [description]="slide.overview">
+      </app-hero-card>
+    </div>
+
+  </div>
+
+  <div class="arrow">
+
+    <button class="carousel-btn prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <button class="carousel-btn next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel"
+  data-bs-interval="1000">
+
+  <div class="carousel-inner">
+    <div class="carousel-item ">
+      <app-hero-card 
+        [image]="'https://statcdn.fandango.com/MPX/image/NBCU_Fandango/348/775/SpiderverseTr.jpg'" 
+        [title]="'Spiderrrrrrr-Man: Across the Spider-Verse'"
+        [genres]="['Animation','Adventure']"
+        [description]="'Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.'">
+      </app-hero-card>
+    </div>
+
+    <div class="carousel-item">
+      <app-hero-card 
+        [image]="'https://images.unsplash.com/photo-1598899134739-24c46f58f9b4?auto=format&fit=crop&w=1470&q=80'" 
+        [title]="'The Batman'"
+        [genres]="['Action', 'Crime', 'Drama']"
+        [description]="'When a sadistic killer leaves behind a trail of cryptic clues, Batman uncovers a web of corruption that connects to his own family.'">
+      </app-hero-card>
+    </div>
+
+    <div class="carousel-item">
+      <app-hero-card 
+        [image]="'https://images.unsplash.com/photo-1542206395-9feb3edaa68a?auto=format&fit=crop&w=1470&q=80'" 
+        [title]="'Interstellar'"
+        [genres]="['Sci-Fi', 'Drama', 'Adventure']"
+        [description]="'A team of explorers travels through a wormhole in space in an attempt to ensure humanity’s survival.'">
+      </app-hero-card>   
+    </div>
+  </div>
+</div> -->

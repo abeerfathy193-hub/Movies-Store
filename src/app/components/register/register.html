@@ -1,0 +1,197 @@
+<div class="container1">
+  <h1>Create Account</h1>
+
+  <div [formGroup]="regForm" id="registerForm">
+
+    <div class=" form-group">
+      <label for="firstName" class="form-label">First name</label>
+      <input type="text" class="form-control  btn2"
+        [ngClass]="regForm.controls.firstName.value? (regForm.controls.firstName.valid?'is-valid':'is-invalid'):''"
+        placeholder="First Name" id="firstName" formControlName="firstName">
+      @if(regForm.value.firstName===null && regForm.controls.firstName.touched){
+      <div class="invalid-feedback">
+        First name is required
+      </div>
+      }@else if(!regForm.controls.firstName.valid){
+      <div class="invalid-feedback">
+        Please enter a valid name at least 4 characters.
+      </div>
+      }@else {
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" class="form-control  btn2"
+        [ngClass]="regForm.controls.lastName.value?(regForm.controls.lastName.valid?'is-valid':'is-invalid'):''"
+        type="text" placeholder="Last Name" required autocomplete="family-name" formControlName="lastName">
+      @if(regForm.value.lastName==null&&regForm.controls.lastName.touched){
+      <div class="invalid-feedback">
+        Last Name is required
+      </div>
+      }@else if(!regForm.controls.lastName.valid ){
+      <div class="invalid-feedback">
+        Please enter a valid name at lest 4 characters.
+      </div>
+      }@else {
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" class="form-control  btn2"
+        [ngClass]="regForm.controls.email.value?(regForm.controls.email.valid?'is-valid':'is-invalid'):''" type="email"
+        placeholder="Email" aria-describedby="inputGroupPrepend3 validationServerEmailFeedback" required
+        autocomplete="email" formControlName="email">
+      <!-- <div id="validationServerEmailFeedback" class="invalid-feedback">
+        Please enter a valid email.
+      </div> -->
+      @if(regForm.value.email==null&&regForm.controls.email.touched){
+      <div class="invalid-feedback">
+        Email is required
+      </div>
+      }@else if(!regForm.controls.email.valid){
+      <div class="invalid-feedback">
+        Please enter a valid email
+      </div>
+      }@else{
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      }
+    </div>
+
+
+    <div class="form-group">
+      <label for="validationServerUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text bt" id="inputGroupPrepend3">@</span>
+        <input type="text" class="form-control "
+          [ngClass]="regForm.controls.userName.value?(regForm.controls.userName.valid?'is-valid':'is-invalid'):''"
+          placeholder="Username" id="validationServerUsername"
+          aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" formControlName="userName">
+        @if(!regForm.controls.userName.valid&&regForm.controls.userName.touched){
+        <div class="invalid-feedback">
+          Username is taken.
+        </div>
+        }@else {
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        }
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth</label>
+      <input id="dateOfBirth" class="form-control  btn2" type="date" placeholder="Date of Birth" required
+        autocomplete="bday" formControlName="dateOfBirth">
+      @if(regForm.value.dateOfBirth==null){
+      <div class="invalid-feedback">
+        Date of Birth is required
+      </div>
+      }@else if(!regForm.controls.dateOfBirth.valid){
+      <div class="invalid-feedback">
+        Date of Birth is required
+      </div>
+      }@else {
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select placeholder="Date of Birth" required id="gender" d formControlName="gender">
+        <option value="" disabled selected>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      @if(regForm.value.email==null){
+      <div class="invalid-feedback">
+        Gender is required
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone (Optional)</label>
+      <input id="phone" type="tel" class="form-control  btn2" placeholder="Phone (Optional)" autocomplete="tel" #phone>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" class="form-control  btn2"
+        [ngClass]="regForm.controls.password.value?(regForm.controls.password.valid?'is-valid':'is-invalid'):''"
+        type="password" placeholder="Password" required autocomplete="new-password" formControlName="password" (change)="regForm.value.cpassword = ''">
+      @if(regForm.value.password==null){
+      <div class="invalid-feedback">
+        Password is required
+      </div>
+      }@else if (!hasLowerCase.test(regForm.value.password)){
+      <div class="invalid-feedback">
+        Password must contain at least one lowercase letter.
+      </div>
+
+      }@else if (!hasUpperCase.test(regForm.value.password)){
+
+      <div class="invalid-feedback">
+        Password must contain at least one uppercase letter.
+      </div>
+      }@else if (!hasNumeric.test(regForm.value.password)){
+      <div class="invalid-feedback">
+        Password must contain at least one digit.
+      </div>
+      }@else if (!hasSpecialChar.test(regForm.value.password)){
+      <div class="invalid-feedback">
+        Password must contain at least one special character.
+      </div>
+      }@else if (!regForm.controls.password.valid){
+      <div class="invalid-feedback">
+        "Password must not contain spaces and must be at least 8 characters long.
+      </div>
+      } @else {
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      }
+    </div>
+
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" class="form-control  btn2"
+        [ngClass]="regForm.value.cpassword?(regForm.value.password==regForm.value.cpassword?'is-valid':'is-invalid'):''"
+        type="password" placeholder="Confirm Password" required autocomplete="new-password" formControlName="cpassword">
+      @if(regForm.value.password!=regForm.value.cpassword&&regForm.controls.password.valid){
+      <div class="invalid-feedback">
+        please and the same password
+      </div>
+      }
+    </div>
+    <input value="SIGN UP" type="button" class="btn1" [disabled]="!formValid" (click)="getUserData()">
+
+    <div class="links">
+      Already have an account?<a routerLink="/Login" > Login</a>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-text">OR SIGN UP WITH</span>
+  </div>
+
+  <div class="social-buttons">
+    <!-- <button type="button" class="social-btn" aria-label="Sign up with Google">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+            <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+                </svg>
+            </button> -->
+    <app-google-login></app-google-login>
+    <app-facebook-login></app-facebook-login>
+  </div>
+</div>

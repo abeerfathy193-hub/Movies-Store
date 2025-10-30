@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Container */
+.container1   {
+  width: 100%;
+  max-width: 28rem;
+  padding: 2.5rem;
+  background-color: hsla(240, 10%, 20%, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  border: 1px solid hsla(240, 10%, 30%, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Typography */
+h1 {
+  font-size: 1.875rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: hsl(0, 0%, 95%);
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+input,select,.btn2 {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1.5rem;
+    background-color: hsla(240, 8%, 25%, 0.8);
+    border: 1px solid hsla(240, 10%, 30%, 0.5);
+  border-radius: 9999px;
+  color: hsl(0, 0%, 95%);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.form-control:focus {
+    background-color: hsla(240, 8%, 25%, 0.8);
+  color: hsl(0, 0%, 95%);
+
+}
+.btn2::placeholder {
+  color: hsl(240, 5%, 65%);
+}
+
+.bt{
+  border-bottom-left-radius: 999px;
+  border-top-left-radius: 999px;
+    background-color: hsla(240, 8%, 25%, 0.8);
+    border: 1px solid hsla(240, 10%, 30%, 0.5);
+}
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a6a6a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
+select option {
+  background-color: hsl(240, 10%, 20%);
+  color: hsl(0, 0%, 95%);
+  padding: 0.5rem;
+}
+
+input[type="date"] {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: hsl(240, 5%, 65%);
+}
+
+input:focus,
+select:focus {
+  border-color: hsl(335, 39%, 32%);
+  box-shadow: 0 0 0 2px hsla(335, 39%, 32%, 0.2);
+}
+
+/* Button */
+.btn1 {
+  width: 100%;
+  height: 3rem;
+  margin-top: 1.5rem;
+  background-color: hsl(335, 39%, 32%) ;;
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn1:hover {
+  background-color: hsl(335, 39%, 28%);
+}
+
+.btn1:active {
+  transform: scale(0.98);
+}
+
+/* Links */
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.link {
+  color: hsl(240, 5%, 65%);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: hsl(0, 0%, 95%);
+}
+
+/* Divider */
+.divider {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.divider-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: hsl(240, 10%, 30%);
+}
+
+.divider-text {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.5rem;
+  background-color: hsl(240, 10%, 20%);
+  color: hsl(240, 5%, 65%);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Social Buttons */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-btn {
+  padding: 0.75rem;
+  background-color: hsl(240, 8%, 30%);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btn:hover {
+  background-color: hsla(240, 8%, 30%, 0.8);
+}
+
+.social-btn svg {
+  width: 1rem;
+  height: 1rem;
+  color: hsl(0, 0%, 95%);
+}

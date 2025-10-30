@@ -1,0 +1,89 @@
+<div class="movie-background" [style.background-image]="'url(' + movie.full_backdrop_path + ')'">
+  <div class="movie-details-overlay">
+    <div class="container py-5">
+      <!--Movie details-->
+      <div class="movie-details shadow-lg p-4 rounded-4">
+        <!-- Favorite Star Icon -->
+        @if(isLoggedIn){
+        <div class="favorite-icon" (click)="toggleFavorite()">
+          <i class="bi" [ngClass]="isFavorite ? 'bi bi-heart-fill text-warning' : 'bi bi-heart text-secondary'">
+          </i>
+        </div>
+        }
+        <!-- Header Section -->
+        <div class="row movie-header">
+          <div class="col-md-4 text-center mb-3 mb-md-0">
+            <img [src]="movie.full_poster_path" alt="{{ movie.title }}" class="movie-poster img-fluid rounded-3" />
+          </div>
+
+          <div class="col-md-8 movie-info">
+            <h1 class="movie-title">
+              {{ movie.title }} <span>({{ movie.release_date | date:'yyyy' }})</span>
+            </h1>
+
+            <div class="movie-meta">
+              <!-- <span><strong>Duration:</strong> {{ movie.duration }} mins</span> -->
+              <span><strong>Genre:</strong> {{ movie.genre_names.join(', ') }}</span>
+              <span><strong>Rating:</strong> {{ movie.vote_average?.toFixed(1)}}/10</span>
+              <span><strong>Release Date:</strong> {{ movie.release_date | date }}</span>
+            </div>
+
+            <p class="movie-overview">{{ movie.overview }}</p>
+
+            <!-- Buy Now Button -->
+            <div class="d-flex align-items-center gap-4 mt-2">
+              <span class="fs-5 text-light">
+                <strong>Price:</strong> ${{ movie.price!.toFixed(2) }}
+              </span>
+              <button class="btn ghost" aria-label="Purchase" [disabled]="!isLoggedIn" (click)="buyNow(movie)">
+                <i class="bi bi-cart4"></i>
+                <span>Purchase</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- Trailer Section -->
+        <div class="movie-trailer text-center">
+          <h2 class="fw-bold mb-3">🎥 Trailer</h2>
+          <div class="ratio ratio-16x9">
+            <iframe [src]="safeTrailerUrl" title="Movie Trailer" frameborder="0" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+        @if(isLoggedIn && hasPurchased){
+
+
+        <hr class="my-4" />
+        <!-- Movie Section -->
+        <app-videoplayer [videoUrl]="movie.trailer" [hasPurchased]="hasPurchased"></app-videoplayer>
+        }
+        <!-- Reviews section-->
+        @if(hasPurchased || movie.reviews!.length > 0){
+        <app-reviews [reviews]="movie.reviews!" [hasPurchased]="hasPurchased"
+          (reviewSubmitted)="submitReview($event)"></app-reviews>
+        }
+
+
+        <hr class="my-4" />
+
+        <!-- Extra Details Section -->
+        <div class="extra-details">
+          <h2 class="fw-bold mb-3">Additional Information</h2>
+          <!-- Cast Section -->
+          <ul class="list-unstyled">
+            <!-- <li><strong>Director:</strong> {{ movie.director }}</li>
+            <li><strong>Production Company:</strong> {{ movie.production }}</li> -->
+            <li><strong>Language:</strong> {{ movie.language }}</li>
+
+            <!-- <li><strong>Budget:</strong> {{ movie.budget | currency }}</li> -->
+          </ul>
+          <app-castlist [cast]="movie.casting"></app-castlist>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

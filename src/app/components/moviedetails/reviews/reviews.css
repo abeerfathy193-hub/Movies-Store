@@ -1,0 +1,123 @@
+.movie-reviews {
+  margin-top: 30px;
+}
+
+.review {
+  background: #2a2a2a;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.review-author {
+  color: #ffb84d;
+  margin-bottom: 4px;
+}
+
+.review-text {
+  font-style: italic;
+  color: #ddd;
+  margin-bottom: 4px;
+}
+
+.review-rating {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.leave-review {
+  margin-top: 20px;
+  background: #2a2a2a;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.leave-review form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.leave-review input,
+.leave-review textarea,
+.leave-review select {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  color: #f4f4f4;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+.leave-review input::placeholder,
+.leave-review textarea::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+.leave-review textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.leave-review label {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+/* .submit-review-btn {
+  background: #ff4c4c;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.25s ease;
+}
+*/
+.btn:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease;
+} 
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.btn .icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #c9c7cf 0%, #f0f0f0 100%);
+  color: #0c0c0c;
+  padding: 5px 20px;
+}
+
+.bi-play-fill {
+  font-size: 25px;
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #c1bec5;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}

@@ -1,0 +1,44 @@
+<div class="container mt-4">
+  <div class="row text-center mb-4">
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm border-0 bg-card text-white">
+        <div class="card-body">
+          <h5>Total Movies</h5>
+          <h2>{{ movies.length }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm border-0 bg-card text-white">
+        <div class="card-body">
+          <h5>Genres Count</h5>
+          <h2>{{ genres.length }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm border-0 bg-card text-white">
+        <div class="card-body">
+          <h5>Top Rated Movie</h5>
+          <h2>{{highRatedMovie?.title}}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm border-0 bg-card text-white">
+        <div class="card-body">
+          <h5>Average Price</h5>
+          <h2>${{avgPrice}}</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chart-card">
+    <canvas id="genreChart" style="width: 100%;"></canvas>
+  </div>
+</div>

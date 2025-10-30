@@ -1,0 +1,33 @@
+
+<div class="container my-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4 fw-bold text-center mb-2 text-white">Your Favourite Movies</h1>
+      <p class="text-center text-white">You personal collection of must-watch films</p>
+    </div>
+  </div>
+
+  @if (favouriteMovies.length > 0) {
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @for (movie of favouriteMovies; track movie.id) {
+      <div class="col">
+        <app-favourite-movie-card
+          [movie]="movie"
+          (remove)="removeFromFavourites($event)"
+        ></app-favourite-movie-card>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-info text-center py-5 border-0 shadow-sm" role="alert">
+        <i class="bi bi-film display-1 text-info mb-3"></i>
+        <h4 class="alert-heading">No Favourite Movies Yet</h4>
+        <p class="mb-0">Start building your collection by adding movies to your favourites!</p>
+      </div>
+    </div>
+  </div>
+}
+
+</div>

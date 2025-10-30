@@ -1,0 +1,52 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+
+        <div class="col-3">
+            <div class="aside">
+                <app-aside></app-aside>
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="main-content">
+                <app-hero-carousel [slides]="slides"></app-hero-carousel>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <app-movie-card></app-movie-card>
+        </div>
+    </div>
+
+</div> -->
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-3">
+            <div class="aside">
+                <app-aside (genreSelected)="onGenreSelected($event)"></app-aside>
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="main-content">
+                <app-hero-slider></app-hero-slider>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <app-movie-card id="movieSection"
+                [selectedGenre]="selectedGenre" >
+            </app-movie-card>
+        </div>
+    </div>
+
+</div>

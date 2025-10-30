@@ -1,0 +1,175 @@
+/*big box containing movie info*/
+.movie-details {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto; /* centers horizontally */
+  color: #f5f5f5;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* blur + dark effect */
+.movie-details-overlay {
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.4);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;  
+  align-items: flex-start;  
+  padding: 40px 0;
+}
+
+/* full bg with Poster */
+.movie-background {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Header Section */
+.movie-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.movie-poster {
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.movie-poster:hover {
+  transform: scale(1.03);
+}
+
+.movie-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.movie-title {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.movie-title span {
+  font-weight: normal;
+  font-size: 1.3rem;
+  color: #aaa;
+}
+/* movie meta = movie info*/
+.movie-meta {
+  margin: 12px 0;
+}
+
+.movie-meta span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #bbb;
+}
+
+/* description for movie (small summary) */
+.movie-overview {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 8px;
+  color: #ddd;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+} 
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.btn .icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #c9c7cf 0%, #f0f0f0 100%);
+  color: #0c0c0c;
+  padding: 5px 20px;
+}
+
+.bi-play-fill {
+  font-size: 25px;
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #c1bec5;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bi-cart4 {
+  font-size: 20px;
+}
+
+
+
+.extra-details {
+  margin-top: 30px;
+}
+
+.extra-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.extra-details li {
+  margin-bottom: 8px;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.15);
+}
+
+.bi-star-fill {
+  color: gold !important;
+}

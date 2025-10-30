@@ -1,0 +1,37 @@
+<div class="movie-card">
+  <div class="poster-wrapper position-relative">
+    <img [src]="movie.full_poster_path" alt="{{ movie.title }}" class="movie-img" />
+    <div class="overlay"></div>
+
+    <!-- Top bar: genre tag left, star rating right -->
+    <div class="d-flex justify-content-between align-items-center position-absolute top-0 start-0 end-0 m-3">
+      <div class="tag text-white px-2 py-1">{{ movie.genre_names[0] }}</div>
+      <span class="badge bg-warning text-dark py-1 px-2">
+        <i class="bi bi-star-fill"></i> {{ movie.vote_average.toFixed(1) }}
+      </span>
+    </div>
+  </div>
+
+  <div class="content">
+  <p class="title">{{ movie.title }}</p>
+  
+  <div class="d-flex justify-content-between align-items-start mb-3">
+    <p class="description">
+      {{ movie.overview.length > 40 ? (movie.overview | slice:0:40) + '...' : movie.overview }}
+    </p>
+    <a class="btn primary flex-shrink-0 mb-5" aria-label="Play Trailer" [routerLink]="['/Moviedetails', movie.id]">
+      <i class="bi bi-play-fill"></i>
+    </a>
+  </div>
+  
+  <!-- Purchase Info at bottom -->
+<div class="d-flex justify-content-between align-items-center gap-2 pt-2 border-top">
+  <span class="badge bg-dark bg-opacity-75 text-white py-2 px-3">
+    <i class="bi bi-calendar3"></i> {{ movie.purchaseDate | date:'MMM d, yyyy' }}
+  </span>
+  <span class="badge bg-success py-2 px-3 fw-bold">
+    ${{ movie.pricePaid }}
+  </span>
+</div>
+</div>
+</div>

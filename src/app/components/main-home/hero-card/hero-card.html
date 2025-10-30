@@ -1,0 +1,38 @@
+<div class="hero-card" [style.background-image]="'url(' + image + ')'">
+  <div class="overlay"></div>
+
+  <div class="badge-row">
+    <div class="badge"><span class="fire">🔥</span> Now Trending </div>
+  </div>
+
+  <div class="content">
+    <div class="tags">
+      <button class="tag" *ngFor="let genre of genres">{{ genre }}</button>
+    </div>
+
+    <h1 class="title">{{ title }}</h1>
+
+    <p class="desc">{{ description }}</p>
+
+    <div class="actions">
+
+      <a class="btn primary" aria-label="More" (click)="scrollTo('movieSection')">
+        <i class="bi bi-play-fill"></i>
+        <span>More</span>
+      </a>
+
+      <a class="btn ghost" aria-label="Purchase" routerLink="/Payment">
+        <i class="bi bi-cart4"></i>
+        <span>Purchase</span>
+      </a>
+      <div class="btn fav" aria-label="fav" (click)="toggleFavorite()">
+        <i class="bi" [ngClass]="isFavorite ? 'bi bi-heart-fill text-warning' : 'bi bi-heart text-secondary'">
+        </i>
+      </div>
+      <!-- <a class="btn fav" aria-label="fav" (click)="toggleFavorite()">
+        <i class="bi bi-suit-heart-fill"></i>
+      </a> -->
+
+    </div>
+  </div>
+</div>

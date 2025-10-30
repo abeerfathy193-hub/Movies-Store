@@ -1,0 +1,130 @@
+<div class="container py-5 ">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+<div class="card shadow p-4">
+        <h4 class="mb-4 text-center ">Payment Details</h4>
+
+        <!-- Bind the submit event -->
+        <form #paymentForm="ngForm" (ngSubmit)="onPay($event)">
+          <!-- Name -->
+          <div class="mb-3">
+            <label class="form-label ">Name on Card</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="myDesign"
+                  placeholder="Name"
+                  required
+                  [(ngModel)]="name"
+                  #nameInput="ngModel"
+                  [ngClass]="{ 'is-invalid': nameInput.invalid && nameInput.touched }"
+                />
+                <div *ngIf="nameInput.invalid && nameInput.touched" class="text-danger small">
+                  Name is required.
+                </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input
+                  type="email"
+                  name="email"
+                  class="myDesign"
+                  placeholder="you@example.com"
+                  required
+                  [(ngModel)]="email"
+                  #emailInput="ngModel"
+                  pattern=".+@.+"
+                  [ngClass]="{ 'is-invalid': emailInput.invalid && emailInput.touched }"
+                />
+                <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger small">
+                  Valid email is required.
+                </div> 
+        </div>
+
+          <!-- Stripe Card Element -->
+
+           <div class="mb-3">
+            <label class="form-label">Card Number</label>
+            <div id="card-number" class="stripe-field"></div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label class="form-label">Expiry</label>
+              <div id="card-expiry" class="stripe-field"></div>
+            </div>
+            <div class="col-6">
+              <label class="form-label">CVC</label>
+              <div id="card-cvc" class="stripe-field"></div>
+            </div>
+          </div>
+
+
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn btn-outline-dark btn-sm"
+            [disabled]="processing"
+          >
+            {{ processing ? 'Processing...' : 'Confirm Payment' }}
+          </button>
+
+          <!-- With Amount-->
+                <!-- <div class="row">
+            <div class="col-6">
+              <div class="amount">
+                 <span>Total: {{ amount | currency:'USD' }}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <button
+            type="button"
+            class="btn btn-outline-dark btn-sm"
+            [disabled]="processing"
+            (click)="onConfirm()"
+          >
+            {{ processing ? 'Processing...' : 'Confirm Payment' }}
+          </button> 
+            </div>
+            </div> -->
+
+          <!-- Popup -->
+
+          <div
+            *ngIf="showSuccessPopup"
+            class="modal fade show d-block"
+            tabindex="-1"
+            style="background: rgba(219, 213, 213, 0.5);">
+
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content text-center p-4">
+                <h4 class="text-success">Payment Successful!</h4>
+                <p>Your payment has been processed successfully.</p>
+                <button class="btn btn-primary " type="button" (click)="closePopup()">OK</button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            *ngIf="showFailedPopup"
+            class="modal fade show d-block"
+            tabindex="-1"
+            style="background: rgba(219, 213, 213, 0.5);">
+            
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content text-center p-4">
+                <h4 id="paymentFailed"style="color: red">{{ errorMsg }} </h4>
+                <p>Your payment Failed.</p>
+                <button class="btn btn-primary" type="button" (click)="closePaymentFailed()">OK</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

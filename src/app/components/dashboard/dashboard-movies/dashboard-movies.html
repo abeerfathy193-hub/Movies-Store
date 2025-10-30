@@ -1,0 +1,190 @@
+<div class="movies-management container ">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="search-wrap">
+      <i class="bi bi-search"></i>
+      <input class="search-input" type="text" placeholder="Search movies" (input)="searchTitle($event.target.value)" />
+    </div>
+
+
+    <button class="btn btn-primary" (click)="addMovie()"><i class="bi bi-plus-circle"></i> Add New Movie</button>
+  </div>
+
+  <div class="movie-grid">
+    @for (item of displayedMovies; track $index) {
+    <div class="movie-card col-12 col-md-6 col-lg-3">
+
+      <div class="poster-wrapper">
+        <img [src]="item.full_poster_path" alt="{{ item.title }}" class="movie-img" />
+        <div class="overlay"></div>
+      </div>
+
+      <div class="content">
+
+        <div class="tag">{{ item.genre_names![0] }}</div>
+        <p class="title">{{ item.title }}</p>
+      </div>
+      <div class="action-buttons">
+        <button class="btn action" (click)="updateMovie(item.id)"><i class="bi bi-pencil-square"></i></button>
+        <button class="btn action" (click)="removeMovie(item.id)"><i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+    }
+  </div>
+  <div class="bottom-buttons">
+    @if (!hideBack) { <button class="btn btn-primary" (click)="backward()">
+      <i class="bi bi-caret-left-fill"></i> Back
+    </button>}
+    @if(!hideNext){
+    <button class="btn btn-primary" (click)="forward()">
+      More <i class="bi bi-caret-right-fill"></i>
+    </button>
+    }
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content glass-modal">
+      <div class="modal-header border-0">
+        @if (isAddMode) {
+        <h5 class="modal-title" id="addMovieModalLabel">🎬 Add New Movie</h5>
+        }
+        @else {
+        <h5 class="modal-title" id="addMovieModalLabel">🎬 Edit Movie</h5>
+        }
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="movieForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" placeholder="Enter movie title" formControlName="title">
+              @if (movieForm.controls.title.invalid && movieForm.controls.title.dirty) {
+              <p class="form-label text-danger">Enter movie title</p>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Release Date</label>
+              <input type="date" class="form-control" formControlName="release_date">
+              @if (movieForm.controls.release_date.invalid && movieForm.controls.release_date.dirty) {
+              <p class="form-label text-danger">Enter movie release date</p>
+              }
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Overview</label>
+              <textarea class="form-control" rows="3" placeholder="Enter movie overview"
+                formControlName="overview"></textarea>
+              @if (movieForm.controls.overview.invalid && movieForm.controls.overview.dirty) {
+              <p class="form-label text-danger">Enter movie overview</p>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Poster URL</label>
+              <input type="text" class="form-control" placeholder="https://poster.jpg"
+                formControlName="full_poster_path">
+              @if (movieForm.controls.full_poster_path.invalid && movieForm.controls.full_poster_path.dirty) {
+              <p class="form-label text-danger">Enter movie poster URL</p>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Backdrop URL</label>
+              <input type="text" class="form-control" placeholder="https://backdrop.jpg"
+                formControlName="full_backdrop_path">
+              @if (movieForm.controls.full_backdrop_path.invalid && movieForm.controls.full_backdrop_path.dirty) {
+              <p class="form-label text-danger">Enter movie backdrop URL</p>
+              }
+            </div>
+
+
+            <div class="col-md-6">
+              <label class="form-label">Price</label>
+              <input type="number" class="form-control" placeholder="Enter price" formControlName="price">
+              @if (movieForm.controls.price.invalid && movieForm.controls.price.dirty) {
+              <p class="form-label text-danger">Enter movie price</p>
+              }
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Average Votes</label>
+              <input type="number" class="form-control" placeholder="Enter Average Votes"
+                formControlName="vote_average">
+              @if (movieForm.controls.vote_average.invalid && movieForm.controls.vote_average.dirty) {
+              <p class="form-label text-danger">Enter movie average votes</p>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Genre</label>
+              <div class="custom-select-wrapper">
+                <select class="form-select glass-select" formControlName="genre_ids" (change)="addGenre()"
+                  name="genres">
+                  <option selected disabled>Select genre</option>
+                  @for (genre of genres; track $index) {
+                  <option [value]="genre.id">{{ genre.name }}</option>
+                  }
+                </select>
+                <div class="selected-genres mt-2">
+                  <span class="genre-tag" *ngFor="let g of genre_names; let i = index">
+                    {{ g }}
+                    <i class="bi bi-x" (click)="removeGenre(i)"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Language</label>
+              <select class="form-select" formControlName="language">
+                <option selected disabled>Select language</option>
+                @for (lang of languages; track $index) {
+                <option [value]="lang.code">{{lang.name}}</option>
+                }
+              </select>
+              @if (movieForm.controls.language.invalid && movieForm.controls.language.dirty) {
+              <p class="form-label text-danger">Enter movie language</p>
+              }
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Trailer URL</label>
+              <input type="text" class="form-control" placeholder="https://trailer.mp4" formControlName="trailer">
+              @if (movieForm.controls.trailer.invalid && movieForm.controls.trailer.dirty) {
+              <p class="form-label text-danger">Enter movie trailer URL</p>
+              }
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Casting Name</label>
+              <textarea class="form-control" placeholder="Enter main cast" formControlName="castStr"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-save" (click)="saveMovie()" [disabled]="movieForm.invalid">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content glass-modal">
+      <div class="modal-header text-white" [ngClass]="modalStatus? 'bg-success': 'bg-danger'">
+        <h5 class="" *ngIf="modalStatus">✅ Success</h5>
+        <h5 class="" *ngIf="!modalStatus">❌ Fail</h5>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-5">{{ modalMessage }}</p>
+      </div>
+
+    </div>
+  </div>

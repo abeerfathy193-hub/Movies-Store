@@ -1,0 +1,49 @@
+<!-- Review Section -->
+<div class="movie-reviews">
+    <h2 class="fw-bold mb-3">Reviews</h2>
+
+    <div class="row">
+        <div class="col-md-6 mb-3" *ngFor="let review of reviews; let i = index">
+            <div class="review h-100">
+                <p class="review-author"><strong>{{ review.author }}</strong> says:</p>
+                <p class="review-text">
+                    “{{ getTrimmedContent(review.content, i) }}”
+                    <a *ngIf="shouldShowSeeMore(review.content, i)" href="#" (click)="toggleExpand(i, $event)">
+                        {{ expandedReviews[i] ? 'See less' : 'See more' }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leave a Review Form -->
+    <div *ngIf="hasPurchased" class="leave-review mt-4">
+        <h3 class="fw-bold mb-3">Leave a Review</h3>
+        <form #reviewForm="ngForm" (ngSubmit)="submitReview()" novalidate class="row g-3">
+            <div class="col-md-12">
+                <input type="text" class="form-control bg-dark text-light border-secondary" placeholder="Your name"
+                    [(ngModel)]="newReview.author" name="author" required />
+            </div>
+
+            <div class="col-12">
+                <textarea class="form-control bg-dark text-light border-secondary" placeholder="Write your review..."
+                    [(ngModel)]="newReview.content" name="content" required></textarea>
+            </div>
+
+            <!-- <div class="col-md-12">
+                <label for="rating" class="form-label text-light">Rating:</label>
+                <select class="form-select bg-dark text-light border-secondary" [(ngModel)]="newReview.rating"
+                    name="rating" required>
+                    <option *ngFor="let r of [1,2,3,4,5,6,7,8,9,10]" [value]="r">{{ r }}</option>
+                </select>
+            </div> -->
+
+            <div class="col-12">
+                <button type="submit" class="btn primary" aria-label="Submit" [disabled]="!reviewForm.valid">
+                    <span>Submit</span>
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

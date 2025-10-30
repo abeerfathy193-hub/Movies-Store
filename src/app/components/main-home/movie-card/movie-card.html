@@ -1,0 +1,36 @@
+<div class="movie-grid" id="movieSection">
+    <div class="movie-card" *ngFor="let movie of pagedMovies">
+        <div class="poster-wrapper">
+            <img [src]="movie.full_poster_path" alt="{{ movie.title }}" class="movie-img" />
+            <div class="overlay"></div>
+        </div>
+
+        <div class="content">
+            <div class="tag">{{ movie.genre_names[0] }}</div>
+            <p class="title">{{ movie.title }}</p>
+            <p class="overview">
+                {{ movie.overview.length > 40 ? (movie.overview | slice:0:40) + '...' : movie.overview }}
+            </p>
+        </div>
+
+        <a class="btn primary" aria-label="Play Trailer" [routerLink]="['/Moviedetails', movie.id]">
+            <i class="bi bi-play-fill"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Pagination -->
+<div class="pagination-wrapper">
+    <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <button *ngFor="let page of totalPagesArray" class="page-btn page-num" [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+    </button>
+
+    <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+        <i class="bi bi-chevron-right"></i>
+    </button>
+</div>

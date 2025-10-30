@@ -1,0 +1,59 @@
+.aside-card {
+    position: relative;
+    height: 100%;
+    margin-left: 20px;
+    border-radius: 30px;
+    background: rgba(194, 198, 207, 0.089);
+    border: 1px solid rgba(235, 203, 203, 0.027);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    z-index: 0;
+}
+
+.aside-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, rgba(85, 81, 87, 0.9), rgba(88, 87, 94, 0.8)),
+        url('/aside-bg.jpg') center/cover no-repeat;
+    background-blend-mode: soft-light;
+    filter: blur(1px) brightness(0.6);
+    z-index: -1;
+}
+
+.genre-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    padding: 20px;
+
+}
+
+.genre-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 62px;
+    border-radius: 25px;
+    background: rgba(46, 46, 48, 0.212);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(83, 82, 85, 0.534);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(136, 134, 139, 0.185);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    i {
+        font-size: 1.1rem;
+    }
+}

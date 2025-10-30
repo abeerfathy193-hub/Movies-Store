@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+
+    <div class="topbar-left m-3 flex-shrink-1">
+      <div class="search-wrap">
+        <i class="bi bi-search"></i>
+        <input class="search-input" type="text" placeholder="Search movies" (input)="onSearchInput($event)" />
+      </div>
+    </div>
+
+    <div class="navbar-nav text-center flex-grow-1 d-flex justify-content-center flex-wrap">
+      <a class="nav-link active" (click)="OnReloadMovies()">Movies</a>
+      <div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="genreDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Genres
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-scroll" aria-labelledby="genreDropdown">
+
+            <li *ngFor="let genre of genres">
+              <a class="dropdown-item" (click)="selectGenre(genre.name)">{{ genre.name }}</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <a class="nav-link" routerLink="/About">About</a>
+    </div>
+
+    <div class="topbar-right flex-shrink-1">
+      <div class="rail flex-wrap justify-content-end">
+        <a class="rail-btn" title="Favourits" routerLink="/FavouriteMovies"><i class="bi bi-heart"></i></a>
+        <a class="rail-btn" title="Purchased" routerLink="/PurchasedMovies"><i
+            class="bi bi-collection-play-fill"></i></a>
+        <!-- <a class="rail-btn" title="Profile" routerLink="/Profile"><i class="bi bi-person-circle"></i></a> -->
+
+        <div class="dropdown">
+
+          <button class="rail-btn dropdown-toggle" type="button" id="loginDropdown" data-bs-toggle="dropdown"
+            aria-expanded="false" title="Login">
+            <i class="bi bi-unlock2"></i>
+          </button>
+          @if(lockFlag){
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+            <li><a class="dropdown-item" (click)="terminateSession()">Log Out</a></li>
+          </ul>
+          }
+          @else{
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+            <li><a class="dropdown-item" routerLink="/Login">Sign In</a></li>
+            <li><a class="dropdown-item" routerLink="/Register">Sign Up</a></li>
+          </ul>
+          }
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

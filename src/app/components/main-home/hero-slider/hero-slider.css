@@ -1,0 +1,39 @@
+.carousel-inner{
+  border-radius: 30px;
+  margin-right: 20px;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 25px;
+  right: 50px; 
+  display: flex;
+  gap: 15px;
+  z-index: 5;
+}
+
+.carousel-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.carousel-btn i {
+  font-size: 18px;
+}
+
+.bi-chevron-left,
+.bi-chevron-right {
+  color: rgba(198, 197, 207, 0.5);
+}
