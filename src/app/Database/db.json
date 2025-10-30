@@ -575,7 +575,12 @@
       "vote_average": 6.688,
       "price": 14,
       "trailer": "https://www.youtube.com/watch?v=V4bQuYwFtOQ",
-      "reviews": [],
+      "reviews": [
+        {
+          "author": "Abeer",
+          "content": "nice"
+        }
+      ],
       "language": "en",
       "casting": [
         "Kate Beckinsale",
@@ -9071,6 +9076,11 @@
       "id": "1",
       "userId": 23,
       "movieId": 1280450
+    },
+    {
+      "id": "2",
+      "userId": 25,
+      "movieId": 1061474
     }
   ],
   "purchased": [
@@ -9339,6 +9349,20 @@
       "purchaseDate": "2025-10-25T07:28:58Z",
       "pricePaid": 60,
       "id": "1g15"
+    },
+    {
+      "id": "3440",
+      "userId": 25,
+      "movieId": 1280450,
+      "purchaseDate": "2025-10-30T10:45:12.328Z",
+      "pricePaid": 14
+    },
+    {
+      "id": "e89c",
+      "userId": 25,
+      "movieId": 9026,
+      "purchaseDate": "2025-10-30T10:47:32.719Z",
+      "pricePaid": 65
     }
   ]
 }

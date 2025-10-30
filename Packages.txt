@@ -1,0 +1,16 @@
+npm i crypto-js
+npm i --save-dev @types/crypto-js
+
+npm install chart.js
+
+npm i bootstrap
+npm install @ng-bootstrap/ng-bootstrap
+npm i @ng-bootstrap
+
+npm install @stripe/stripe-js ngx-stripe
+
+npm i jsonserver -g
+npx json-server --watch db.json --port 300
+
+// to run https
+ng serve --ssl true

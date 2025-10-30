@@ -35,7 +35,7 @@
               <span class="fs-5 text-light">
                 <strong>Price:</strong> ${{ movie.price!.toFixed(2) }}
               </span>
-              <button class="btn ghost" aria-label="Purchase" [disabled]="!isLoggedIn" (click)="buyNow(movie)">
+              <button class="btn ghost" aria-label="Purchase" [disabled]="!isLoggedIn" [hidden]="hasPurchased" (click)="buyNow(movie)">
                 <i class="bi bi-cart4"></i>
                 <span>Purchase</span>
               </button>
@@ -56,7 +56,7 @@
         @if(isLoggedIn && hasPurchased){
 
 
-        <hr class="my-4" />
+        <!-- <hr class="my-4" /> -->
         <!-- Movie Section -->
         <app-videoplayer [videoUrl]="movie.trailer" [hasPurchased]="hasPurchased"></app-videoplayer>
         }
