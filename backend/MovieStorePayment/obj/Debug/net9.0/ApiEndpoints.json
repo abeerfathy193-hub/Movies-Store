@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "MovieStorePayment.Controllers.PaymentController",
+    "Method": "CreatePaymentIntent",
+    "RelativePath": "api/Payment/create-payment-intent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MovieStorePayment.Controllers.PaymentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MovieStorePayment.Controllers.PaymentController",
+    "Method": "Hello",
+    "RelativePath": "api/Payment/hello",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

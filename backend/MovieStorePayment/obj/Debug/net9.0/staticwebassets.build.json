@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "B3I8Xc5FqKRWBf3kx0Fu1bmS0pdl+qTQc4ZJWKxzqTM=",
+  "Source": "MovieStorePayment",
+  "BasePath": "_content/MovieStorePayment",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
