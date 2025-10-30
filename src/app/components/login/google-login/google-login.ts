@@ -55,7 +55,13 @@ export class GoogleLogin implements OnInit {
     if (res) {
       const data = this.decodeJwtResponse(res.credential);
       // console.log('user', JSON.stringify(this.users))
-      const user = {
+      const user = this.users.find(u=> u.email === data.email.trim());
+      if (user) {
+        console.log('login')
+        this.myService.setUserToken(user);
+        this.router.navigate(['/MainHome']);
+      } else {
+        const user = {
         id: this.myService.getNextId(this.users),
         firstName: data.given_name.trim(),
         lastName: data.family_name.trim(),
@@ -70,11 +76,6 @@ export class GoogleLogin implements OnInit {
         isActive: true,
         role: 'user'
       } as IUser;
-      if (this.email.includes(user.email)) {
-        console.log('login')
-        this.myService.setUserToken(user);
-        this.router.navigate(['/MainHome']);
-      } else {
         this.myService.postUserData(user).subscribe({
           next: (response) => {
             console.log(' User created', response);
