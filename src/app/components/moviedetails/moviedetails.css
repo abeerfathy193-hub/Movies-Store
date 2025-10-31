@@ -57,6 +57,7 @@
 }
 
 .movie-title {
+  padding-right: 50px;
   font-size: 2rem;
   margin-bottom: 8px;
 }
