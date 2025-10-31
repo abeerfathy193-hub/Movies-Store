@@ -33,14 +33,8 @@ export class FacebookLogin {
     FB.login((response: any) => {
       if (response.authResponse) {
         FB.api('/me', { fields: 'name,email,picture' }, (response: { name: string, email: string, picture?: string }) => {
-          console.log('response', response);
-          const user = this.users.find(u => u.email === response.email.trim());
-          if (user) {
-            this.myService.setUserToken(user);
-            this.router.navigate(['/MainHome']);
-            return;
-          } else {
-            const fullName = response.name.trim().split(' ');
+          // console.log('response', response);
+          const fullName = response.name.trim().split(' ');
             const user = {
               id: this.myService.getNextId(this.users),
               firstName: fullName.length > 0 ? fullName[0] : response.name.trim(),
@@ -56,6 +50,10 @@ export class FacebookLogin {
               isActive: true,
               role: 'user'
             } as IUser;
+          if (this.email.includes(user.email)) {
+            this.myService.setUserToken(user);
+            this.router.navigate(['/MainHome']);
+          } else {
             this.myService.postUserData(user).subscribe({
               next: (response) => {
                 console.log(' User created', response);

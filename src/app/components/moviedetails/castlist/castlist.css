@@ -39,3 +39,6 @@
   color: #bbb;
   font-size: 0.9rem;
 }
+.actor-name:hover{
+  cursor:default;
+}
