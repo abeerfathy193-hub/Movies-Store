@@ -30,7 +30,7 @@ export class FavouriteMovies implements OnInit {
 
 
   loadFavourites(): void {
-    this.favouriteService.getFavourites(this.user.id).subscribe({
+    this.favouriteService.getFavouritesbyUserId(Number(this.user.id)).subscribe({
     next: (favs) => {
       debugger
       this.favouriteMovies = [];
@@ -49,7 +49,7 @@ export class FavouriteMovies implements OnInit {
   }  
 
   removeFromFavourites(favId: string) {
-  this.favouriteService.removeFavourite(favId).subscribe({
+  this.favouriteService.removeFavouritebyId(favId).subscribe({
 
     next: () => {
       this.favouriteMovies = this.favouriteMovies.filter(m => m.favId !== favId);

@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, RouterLinkWithHref, Router } from "@angular/router";
+import { RouterOutlet, Router, RouterLinkWithHref } from "@angular/router";
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../Interface/IUser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterOutlet, RouterLinkWithHref],
+  imports: [RouterOutlet, CommonModule, RouterLinkWithHref],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
-export class Dashboard implements OnInit{
+export class Dashboard implements OnInit {
   user!: IUser;
-  constructor(private authService :AuthService, private router: Router){}
+  openAside = false;
+  constructor(private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
     this.user = this.authService.getUserbyToken()!;
   }
-  Logout(){
+  toggleAside(){
+    this.openAside = !this.openAside;
+  }
+  Logout() {
     this.authService.resetUserToken();
     this.router.navigate(["/Login"]);
   }

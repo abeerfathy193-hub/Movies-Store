@@ -32,36 +32,34 @@ export class FacebookLogin {
     console.log('fb login called');
     FB.login((response: any) => {
       if (response.authResponse) {
-
-
         FB.api('/me', { fields: 'name,email,picture' }, (response: { name: string, email: string, picture?: string }) => {
           // console.log('response', response);
-      const user = this.users.find(u=> u.email === response.email.trim());
-
-          if (user) {
+          const fullName = response.name.trim().split(' ');
+            const user = {
+              id: this.myService.getNextId(this.users),
+              firstName: fullName.length > 0 ? fullName[0] : response.name.trim(),
+              lastName: fullName.length > 0 ? fullName[1] : '',
+              username: '',
+              email: response.email.trim(),
+              password: '',
+              dateOfBirth: '',
+              gender: '',
+              phone: undefined,
+              createdAt: new Date(),
+              loginMethod: 'facebook',
+              isActive: true,
+              role: 'user'
+            } as IUser;
+          if (this.email.includes(user.email)) {
             this.myService.setUserToken(user);
             this.router.navigate(['/MainHome']);
           } else {
-                      const user = {
-            id: this.myService.getNextId(this.users),
-            firstName: response.name.trim(),
-            lastName: '',
-            username: '',
-            email: response.email.trim(),
-            password: '',
-            dateOfBirth: '',
-            gender: '',
-            phone: undefined,
-            createdAt: new Date(),
-            loginMethod: 'facebook',
-            isActive: true,
-            role: 'user'
-          } as IUser;
             this.myService.postUserData(user).subscribe({
               next: (response) => {
                 console.log(' User created', response);
                 this.myService.setUserToken(response);
                 this.router.navigate(['/MainHome']);
+                return;
               },
               error: (err) => console.error(' Error:createtion', err),
             });

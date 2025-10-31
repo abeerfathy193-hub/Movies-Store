@@ -120,14 +120,14 @@
 
     <div class="form-group">
       <label for="phone">Phone (Optional)</label>
-      <input id="phone" type="tel" class="form-control  btn2" placeholder="Phone (Optional)" autocomplete="tel" #phone>
+      <input id="phone" type="tel" class="form-control  btn2" placeholder="Phone (Optional)" autocomplete="tel">
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
       <input id="password" class="form-control  btn2"
         [ngClass]="regForm.controls.password.value?(regForm.controls.password.valid?'is-valid':'is-invalid'):''"
-        type="password" placeholder="Password" required autocomplete="new-password" formControlName="password" (change)="regForm.value.cpassword = ''">
+        type="password" placeholder="Password" required autocomplete="new-password" formControlName="password" (input)="clearcpassword(cpassword)">
       @if(regForm.value.password==null){
       <div class="invalid-feedback">
         Password is required
@@ -166,7 +166,7 @@
       <label for="confirmPassword">Confirm Password</label>
       <input id="confirmPassword" class="form-control  btn2"
         [ngClass]="regForm.value.cpassword?(regForm.value.password==regForm.value.cpassword?'is-valid':'is-invalid'):''"
-        type="password" placeholder="Confirm Password" required autocomplete="new-password" formControlName="cpassword">
+        type="password" placeholder="Confirm Password" required autocomplete="new-password" formControlName="cpassword" #cpassword>
       @if(regForm.value.password!=regForm.value.cpassword&&regForm.controls.password.valid){
       <div class="invalid-feedback">
         please and the same password
@@ -176,7 +176,7 @@
     <input value="SIGN UP" type="button" class="btn1" [disabled]="!formValid" (click)="getUserData()">
 
     <div class="links">
-      Already have an account?<a routerLink="/Login" > Login</a>
+      <a routerLink="/Login" class="link">Already have an account? Login</a>
     </div>
   </div>
 

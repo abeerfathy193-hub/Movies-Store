@@ -163,7 +163,10 @@ export class Payment implements OnInit, OnDestroy {
           purchaseDate: new Date(),
           pricePaid: Number(this.movie.price)
         } as IPurchased;
-        this.purchasedService.addPurchasedMovie(purchase).subscribe({});
+        this.purchasedService.addPurchasedMovie(purchase).subscribe({
+          next: (data)=> console.log('Movie has been purchased!'),
+          error: () => console.error('Error in purchasing!')
+        });
       } else {
         console.error('Stripe payment error:', this.errorMsg);
         this.errorMsg = 'Payment not completed';

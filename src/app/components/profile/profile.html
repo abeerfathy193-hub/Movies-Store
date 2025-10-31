@@ -1,1 +1,134 @@
-<p>profile works!</p>
+<div class="container mt-5 mb-5">
+  <div class="card shadow-lg p-4 rounded-4">
+    <h3 class="mb-4 text-center fw-bold">My Profile</h3>
+
+    <form [formGroup]="profileForm">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">First Name</label>
+          <input type="text" formControlName="firstName" class="form-control" placeholder="Enter first name"
+            [ngClass]="profileForm.controls.firstName.valid? 'is-valid':'is-invalid'">
+          @if(profileForm.controls.firstName.invalid && profileForm.controls.firstName.dirty){
+          <p class="text-danger mt-1">
+            Enter valid First Name.
+          </p>
+          }
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control" placeholder="Enter last name"
+            [ngClass]="profileForm.controls.lastName.valid? 'is-valid':'is-invalid'">
+          @if(profileForm.controls.lastName.invalid && profileForm.controls.lastName.dirty){
+          <p class="text-danger mt-1">
+            Enter valid Last Name.
+          </p>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" formControlName="email" class="form-control">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Username</label>
+          <input type="text" formControlName="username" class="form-control"
+            [ngClass]="profileForm.controls.username.valid? 'is-valid':'is-invalid'">
+          @if(profileForm.controls.username.invalid && profileForm.controls.username.dirty){
+          <p class="text-danger mt-1">
+            Enter valid User Name.
+          </p>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Birthdate</label>
+          <input type="date" formControlName="dateOfBirth" class="form-control"
+            [ngClass]="profileForm.controls.dateOfBirth.valid? 'is-valid':'is-invalid'">
+          @if(profileForm.controls.dateOfBirth.invalid && profileForm.controls.dateOfBirth.dirty){
+          <p class="text-danger mt-1">
+            You must be at least 10 years old.
+          </p>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Gender</label>
+          <select class="form-select" formControlName="gender"
+            [ngClass]="profileForm.controls.gender.valid? 'is-valid':'is-invalid'">
+            <option disabled>Select gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Phone (optional)</label>
+          <input type="tel" formControlName="phone" class="form-control">
+        </div>
+      </div>
+      @if(user.loginMethod === 'email'){
+      <div class="mt-4 links">
+        <a class="text-primary link" (click)="toggleChangePassword($event)">
+          Change Password
+        </a>
+      </div>
+
+      <div *ngIf="showPasswordFields" class="mt-3">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Current Password</label>
+            <input type="password" formControlName="currentPassword" class="form-control" placeholder="Current Password"
+              [ngClass]="profileForm.controls.currentPassword.valid? 'is-valid':'is-invalid'">
+            @if(profileForm.controls.currentPassword.invalid && profileForm.controls.currentPassword.dirty){
+            <p class="text-danger mt-1">
+              Current password is incorrect.
+            </p>
+            }
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">New Password</label>
+            <input type="password" formControlName="newPassword" class="form-control" placeholder="New Password"
+              [ngClass]="profileForm.controls.newPassword.valid && (profileForm.controls.newPassword.dirty || profileForm.controls.newPassword.touched)? 'is-valid':'is-invalid'"
+              (input)="clearConfirmPassword(ConfirmPassword)">
+            @if(profileForm.controls.newPassword.invalid && profileForm.controls.newPassword.dirty){
+            @if (!hasLowerCase.test(profileForm.value.newPassword!)){
+            <p class="text-danger mt-1">
+              Password must contain at least one lowercase letter.
+            </p>
+            }@else if (!hasUpperCase.test(profileForm.value.newPassword!)){
+            <p class="text-danger mt-1">
+              Password must contain at least one uppercase letter.
+            </p>
+            }@else if (!hasNumeric.test(profileForm.value.newPassword!)){
+            <p class="text-danger mt-1">
+              Password must contain at least one digit.
+            </p>
+            }@else if (!hasSpecialChar.test(profileForm.value.newPassword!)){
+            <p class="text-danger mt-1">
+              Password must contain at least one special character.
+            </p>
+            }
+            }
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" #ConfirmPassword
+              [ngClass]="profileForm.controls.confirmPassword.valid && (profileForm.controls.confirmPassword.dirty || profileForm.controls.confirmPassword.touched)? 'is-valid':'is-invalid'"
+              placeholder="Confirm Password">
+            @if(profileForm.controls.confirmPassword.invalid && profileForm.controls.confirmPassword.dirty){
+            <p class="text-danger mt-1">
+              Confirm password is incorrect.
+            </p>
+            }
+          </div>
+        </div>
+
+      </div>
+      }
+      <div class="text-center mt-4">
+        <button class="btn" (click)="saveChanges()" [disabled]="profileForm.invalid">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>

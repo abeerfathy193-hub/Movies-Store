@@ -15,11 +15,11 @@ import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../Interface/IUser';
 import { GoogleLogin } from '../login/google-login/google-login';
 import { FacebookLogin } from '../login/facebook-login/facebook-login';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, ReactiveFormsModule, GoogleLogin, FacebookLogin, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, GoogleLogin, FacebookLogin, CommonModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: 'register.css',
 })
@@ -113,5 +113,8 @@ export class Register {
           error: (err) => console.error(' Error:createtion', err),
         });
     }
+  }
+  clearcpassword(ele : HTMLInputElement){
+    ele.value = '';
   }
 }

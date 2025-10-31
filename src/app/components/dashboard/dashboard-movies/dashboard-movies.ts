@@ -5,6 +5,8 @@ import { IMovie } from '../../../Interface/IMovie';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { App } from '../../../app';
+import { FavouriteServices } from '../../../services/favourite-services';
+import { PurchasedServices } from '../../../services/purchased-services';
 declare var bootstrap: any;
 
 
@@ -38,7 +40,7 @@ export class DashboardMovies implements OnInit {
   movies: IMovie[] = [];
   displayedMovies: IMovie[] = [];
   currentIndex = 0;
-  itemsPerPage = 8;
+  itemsPerPage = 10;
   filteredList: IMovie[] = [];
 
   hideBack = true;
@@ -68,7 +70,7 @@ export class DashboardMovies implements OnInit {
     reviews: new FormControl([], []),
   });
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private favouriteService: FavouriteServices, private purchasedService: PurchasedServices) {
   }
 
   ngOnInit() {
@@ -268,6 +270,8 @@ export class DashboardMovies implements OnInit {
     this.movieService.deleteMovie(Number(id)).subscribe({
 
       next: () => {
+        this.favouriteService.removeFavourites(Number(id));
+        this.purchasedService.removePurchasedMovies(Number(id));
         this.modalStatus = true;
         this.modalMessage = 'Movie deleted successfully!';
         this.showSuccessModal()

@@ -32,3 +32,102 @@ aside a:hover {
     background: rgba(255, 255, 255, 0.25);
     transform: scale(1.03);
 }
+
+/* 
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+
+.menu-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: none;
+}
+
+
+
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+
+.aside {
+  width: 250px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: left 0.3s ease;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.aside a {
+  text-decoration: none;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.aside a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.03);
+}
+
+*/
+.menu-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block;
+        position: fixed;
+        left: 10px;
+        top: 10px;
+    }
+
+    .menu-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .aside {
+        position: fixed;
+        top: 56px;
+        left: -250px;
+        height: calc(100vh - 56px);
+        z-index: 999;
+    }
+
+    .aside.open {
+        left: 0;
+    }
+
+    .content {
+        padding: 20px;
+    }
+}

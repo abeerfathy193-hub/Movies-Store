@@ -41,10 +41,7 @@ export class MovieService {
 
   addReview(movieId: number, newReview: any): void {
     this.myClient.get<any>(`${this.dataService.MOVIES_URL}/${movieId}`).subscribe(movie => {
-      const updatedMovie = {
-        ...movie,
-        reviews: [...movie.reviews, newReview]
-      };
+      const updatedMovie = { ...movie, reviews: [...movie.reviews, newReview] };
       this.myClient.put<IMovie>(`${this.dataService.MOVIES_URL}/${movieId}`, updatedMovie)
         .subscribe({
           next: () => console.log('Review added successfully!'),

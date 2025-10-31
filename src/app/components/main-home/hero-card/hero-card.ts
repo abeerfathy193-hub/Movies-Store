@@ -23,7 +23,6 @@ export class HeroCard implements OnInit {
 
   private isLoggedIn = false;
   isFavorite = false;
-  lastId = 0;
   User!: IUser;
 
   constructor(private route: Router, private favouriteServices: FavouriteServices, private movieService: MovieService, private authService: AuthService) { }
@@ -34,13 +33,12 @@ export class HeroCard implements OnInit {
     const user = this.authService.getUserbyToken();
     if (user) {
       this.User = user;
+      this.isLoggedIn = true;
       this.favouriteServices.getAllFavourites().subscribe({
-
         next: (data) => {
-          const fav = data.find(x => x.movieId === this.id && x.userId === Number(this.User.id))
+          debugger
+          const fav = data.find(x => x.movieId === Number(this.id) && x.userId === Number(this.User.id))
           this.isFavorite = fav ? true : false;
-          if (data.length > 0)
-            this.lastId = Number(data[data.length - 1].id);
 
         },
         error: err => console.error('Error getting favourite', err)
@@ -48,16 +46,21 @@ export class HeroCard implements OnInit {
     }
   }
   toggleFavorite() {
+    debugger
     if (this.isLoggedIn) {
       this.isFavorite = !this.isFavorite;
       if (this.isFavorite) {
-        const favourite = { userId: Number(this.User.id), movieId: Number(this.id), id: String(this.lastId + 1) } as IFavourite;
-        this.favouriteServices.addFavourite(favourite);
+        const favourite = { userId: Number(this.User.id), movieId: Number(this.id) } as IFavourite;
+        this.favouriteServices.addFavourite(favourite).subscribe({
+          next: ()=> console.log('Adding in Favourite'),
+          error: (err) => console.error(err)          
+        });
       } else {
-        this.favouriteServices.removeFavouritebyMovieAndUserId(this.User.id, this.id);
+        this.favouriteServices.removeFavourite(Number(this.User.id), Number(this.id));
       }
     }
   }
+
   scrollTo(sectionId: string) {
     const element = document.getElementById(sectionId);
     if (element) {
