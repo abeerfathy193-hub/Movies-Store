@@ -355,6 +355,21 @@
       "loginMethod": "google",
       "isActive": true,
       "role": "user"
+    },
+    {
+      "id": 25,
+      "firstName": "Aaliyah",
+      "lastName": "Hazem",
+      "username": "aaliyahhazem",
+      "email": "aaliyahhazem@gmail.com",
+      "password": "urTp5C7ed#kqD#p",
+      "dateOfBirth": "2002-05-26",
+      "gender": "female",
+      "phone": "",
+      "createdAt": "2025-10-31T04:08:39.413Z",
+      "loginMethod": "email",
+      "isActive": true,
+      "role": "user"
     }
   ],
   "genres": [
@@ -9069,11 +9084,6 @@
     },
     {
       "id": "1",
-      "userId": 25,
-      "movieId": 9026
-    },
-    {
-      "id": "1",
       "userId": 23,
       "movieId": 1280450
     },
@@ -9081,6 +9091,11 @@
       "id": "2",
       "userId": 25,
       "movieId": 1061474
+    },
+    {
+      "id": "3",
+      "userId": 25,
+      "movieId": 575265
     }
   ],
   "purchased": [

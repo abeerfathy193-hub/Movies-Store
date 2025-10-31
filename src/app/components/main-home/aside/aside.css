@@ -16,7 +16,7 @@
     inset: 0;
     background:
         linear-gradient(135deg, rgba(85, 81, 87, 0.9), rgba(88, 87, 94, 0.8)),
-        url('/aside-bg.jpg') center/cover no-repeat;
+        url('https://i.pinimg.com/1200x/f4/ce/14/f4ce14ec054d84028a6ea37979448572.jpg') center/cover no-repeat;
     background-blend-mode: soft-light;
     filter: blur(1px) brightness(0.6);
     z-index: -1;
@@ -56,4 +56,12 @@
     i {
         font-size: 1.1rem;
     }
+}
+
+.genre-card.active {
+    background: rgba(57, 54, 70, 0.342);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(0.98);
+    color: #d8d7ebb6;
+    font-weight: 600;
 }

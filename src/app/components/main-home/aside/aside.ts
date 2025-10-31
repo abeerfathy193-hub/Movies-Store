@@ -10,8 +10,8 @@ import { MovieService } from '../../../services/movie.service';
 })
 
 export class Aside {
-
   genres: any[] = [];
+  selectedGenre: string = '';
 
   @Output() genreSelected = new EventEmitter<string>();
 
@@ -19,12 +19,12 @@ export class Aside {
 
   ngOnInit() {
     this.movieService.getAllGenres().subscribe((data) => {
-      this.genres = data.slice(0, 10); // only 10 genres
+      this.genres = data.slice(0, 10);
     });
   }
 
   selectGenre(name: string) {
+    this.selectedGenre = name;
     this.genreSelected.emit(name);
   }
-
 }

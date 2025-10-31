@@ -1,6 +1,7 @@
 <div class="aside-card">
   <div class="genre-container">
-    <div class="genre-card" *ngFor="let genre of genres" (click)="selectGenre(genre.name)">
+    <div class="genre-card" *ngFor="let genre of genres" (click)="selectGenre(genre.name)"
+      [class.active]="selectedGenre === genre.name">
       <i [class]="genre.icon"></i>
       <span>{{ genre.name }}</span>
     </div>
