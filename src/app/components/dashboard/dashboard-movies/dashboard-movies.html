@@ -1,17 +1,17 @@
 <div class="movies-management container ">
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex justify-content-between flex-wrap mb-4 ">
     <div class="search-wrap">
       <i class="bi bi-search"></i>
       <input class="search-input" type="text" placeholder="Search movies" (input)="searchTitle($event.target.value)" />
     </div>
-
-
-    <button class="btn btn-primary" (click)="addMovie()"><i class="bi bi-plus-circle"></i> Add New Movie</button>
+       <button class="btn btn-primary" (click)="addMovie()"><i class="bi bi-plus-circle"></i>
+        Add New Movie</button>
+    
   </div>
 
   <div class="movie-grid">
     @for (item of displayedMovies; track $index) {
-    <div class="movie-card col-12 col-md-6 col-lg-3">
+    <div class="movie-card">
 
       <div class="poster-wrapper">
         <img [src]="item.full_poster_path" alt="{{ item.title }}" class="movie-img" />
@@ -60,7 +60,7 @@
       <div class="modal-body">
         <form [formGroup]="movieForm">
           <div class="row g-3">
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Title</label>
               <input type="text" class="form-control" placeholder="Enter movie title" formControlName="title">
               @if (movieForm.controls.title.invalid && movieForm.controls.title.dirty) {
@@ -68,7 +68,7 @@
               }
             </div>
 
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Release Date</label>
               <input type="date" class="form-control" formControlName="release_date">
               @if (movieForm.controls.release_date.invalid && movieForm.controls.release_date.dirty) {
@@ -85,7 +85,7 @@
               }
             </div>
 
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Poster URL</label>
               <input type="text" class="form-control" placeholder="https://poster.jpg"
                 formControlName="full_poster_path">
@@ -94,7 +94,7 @@
               }
             </div>
 
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Backdrop URL</label>
               <input type="text" class="form-control" placeholder="https://backdrop.jpg"
                 formControlName="full_backdrop_path">
@@ -104,14 +104,14 @@
             </div>
 
 
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Price</label>
               <input type="number" class="form-control" placeholder="Enter price" formControlName="price">
               @if (movieForm.controls.price.invalid && movieForm.controls.price.dirty) {
               <p class="form-label text-danger">Enter movie price</p>
               }
             </div>
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Average Votes</label>
               <input type="number" class="form-control" placeholder="Enter Average Votes"
                 formControlName="vote_average">
@@ -120,7 +120,7 @@
               }
             </div>
 
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Genre</label>
               <div class="custom-select-wrapper">
                 <select class="form-select glass-select" formControlName="genre_ids" (change)="addGenre()"
@@ -138,7 +138,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Language</label>
               <select class="form-select" formControlName="language">
                 <option selected disabled>Select language</option>
@@ -150,14 +150,14 @@
               <p class="form-label text-danger">Enter movie language</p>
               }
             </div>
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Trailer URL</label>
               <input type="text" class="form-control" placeholder="https://trailer.mp4" formControlName="trailer">
               @if (movieForm.controls.trailer.invalid && movieForm.controls.trailer.dirty) {
               <p class="form-label text-danger">Enter movie trailer URL</p>
               }
             </div>
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <label class="form-label">Casting Name</label>
               <textarea class="form-control" placeholder="Enter main cast" formControlName="castStr"></textarea>
             </div>

@@ -1,5 +1,10 @@
 <div class="dashboard-container d-flex">
-  <aside class="aside d-flex flex-column justify-content-between">
+  <div class="d-flex align-items-center">
+    <button class="menu-btn me-3" (click)="toggleAside()">
+      <i class="bi bi-list fs-3 text-white"></i>
+    </button>
+  </div>
+  <aside class="aside d-flex flex-column justify-content-between" [class.open]="openAside">
     <div>
       <div class="d-flex align-items-center justify-content-between mb-4">
         <div class="user d-flex align-items-center">

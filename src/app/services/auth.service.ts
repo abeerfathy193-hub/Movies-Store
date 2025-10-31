@@ -16,32 +16,11 @@ export class AuthService {
   getAllUsers() {
     return this.myClient.get<IUser[]>(this.dataService.USERS_URL);
   }
-
-  // getToken(): IUser | null {
-  //   debugger
-  //   if (document.cookie) {
-  //     const tokenIdx = document.cookie.indexOf('usertoken')
-  //     if (tokenIdx !== -1) {
-  //       let tokenUtil = new Token();
-  //       const value = document.cookie.substring(tokenIdx + 10);
-  //       const user = tokenUtil.decryptToken(decodeURIComponent(value));
-  //       const checkLocal = localStorage.getItem("usertoken") ? true : false;
-  //       if (!checkLocal)
-  //         localStorage.setItem("usertoken", value);
-  //       return user;
-  //     }
-  //   }
-  //   return null;
-  // }
-
-  // setToken(user: IUser) {
-  //   let tokenUtil = new Token();
-  //   const token = tokenUtil.encryptToken(user);
-  //   localStorage.setItem("usertoken", token);
-  //   const expiryDate = new Date();
-  //   expiryDate.setDate(expiryDate.getDate() + 7); // 7 days from now
-  //   document.cookie = `usertoken=${encodeURIComponent(token)}; expires=${expiryDate.toUTCString()}; path=/`;
-  // }
+  UpdateUserToken(user: IUser) {
+    const remeberMeChecker = (document.cookie && document.cookie.includes('userToken')) ? true : false;
+    this.resetUserToken();
+    this.setUserToken(user, remeberMeChecker);
+  }
   setUserToken(user: IUser, remeberMe: boolean = false) {
     let tokenUtil = new Token();
     const token = tokenUtil.encryptToken(user);
@@ -53,7 +32,6 @@ export class AuthService {
     sessionStorage.setItem("userToken", token);
   }
   getUserbyToken(): IUser | null {
-    debugger
     if (document.cookie && document.cookie.includes('userToken')) {
       const startIdx = document.cookie.indexOf('userToken') + 10;// 10 for 'userToken='
       let tokenUtil = new Token();
@@ -82,6 +60,9 @@ export class AuthService {
 
   postUserData(user: IUser) {
     return this.myClient.post<IUser>(this.dataService.USERS_URL, user)
+  }
+  updateUserData(user: IUser) {
+    return this.myClient.put<IUser>(`${this.dataService.USERS_URL}/${user.id}`, user)
   }
   getNextId(list: IUser[]): number {
     if (list.length === 0) return 1;

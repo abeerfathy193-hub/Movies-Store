@@ -19,28 +19,53 @@ export class FavouriteServices {
     return this.favouriteHttpClient.get<IFavourite[]>(`${this.favouritesURL}`);
   }
 
-  getFavourites(userId: number) {
-    console.log('Getting favourites for user:', userId); //debugging line
-    return this.favouriteHttpClient.get<IFavourite[]>(`${this.favouritesURL}?userId=${userId}`);
-  }
-
   // Add a new favourite movie
   addFavourite(favourite: IFavourite) {
     debugger
-    return this.favouriteHttpClient.post<IFavourite>(this.favouritesURL, favourite).subscribe({});
+    return this.favouriteHttpClient.post<IFavourite>(this.favouritesURL, favourite);
   }
-
-  // Remove a favourite movie
-  removeFavourite(favId: string) {
-    return this.favouriteHttpClient.delete(`${this.favouritesURL}/${favId}`);
+  getFavouritesbyUserId(userId: number) {
+    return this.favouriteHttpClient.get<IFavourite[]>(`${this.favouritesURL}?userId=${userId}`);
   }
-  removeFavouritebyMovieAndUserId(userId: number, movieId: number) {
-    this.favouriteHttpClient.get<IFavourite[]>(`${this.favouritesURL}?userId=${userId}&movieId=${movieId}`).subscribe({
+  getFavouritesbyMovieId(movieId: number) {
+    return this.favouriteHttpClient.get<IFavourite[]>(`${this.favouritesURL}?movieId=${movieId}`);
+  }
+  checkFavourite(userId: number, movieId: number) {
+    return this.favouriteHttpClient.get<IFavourite[]>(`${this.favouritesURL}?userId=${userId}&movieId=${movieId}`);
+  }
+  removeFavourite(userId: number, movieId: number) {
+    this.checkFavourite(userId, movieId).subscribe({
       next: (data) => {
-        if (data.length > 0)
-          this.favouriteHttpClient.delete(`${this.favouritesURL}/${data[0].id}`).subscribe({});
+        if (data.length == 1)
+          this.favouriteHttpClient.delete(`${this.favouritesURL}/${data[0].id}`).subscribe({
+            next: () => console.log('Favourite deleted!'),
+            error: () => console.error('Error removing favourite')
+          })
       },
-      error: err => console.error('Error removing favourite', err)
+      error: (err) => {
+        console.error('Error in getting favourites', err)
+      }
     });
   }
+
+  removeFavourites(movieId: number) {
+    this.getFavouritesbyMovieId(movieId).subscribe({
+      next: (data) => {
+        for (let ele of data) {
+          this.favouriteHttpClient.delete(`${this.favouritesURL}/${ele.id}`).subscribe({
+            next: () => console.log('Favourite deleted!'),
+            error: () => console.error('Error removing favourite')
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Error in getting favourites', err)
+      }
+    });
+  }
+
+  removeFavouritebyId(favId: string) {
+    return this.favouriteHttpClient.delete(`${this.favouritesURL}/${favId}`);
+  }
+
 }

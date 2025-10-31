@@ -51,7 +51,6 @@ export class Moviedetails implements OnInit {
   isFavorite: boolean = false;
   hasPurchased: boolean = false;
   isLoggedIn: boolean = false;
-  lastFavId = 0;
   User!: IUser;
   newReview = {
     author: '',
@@ -83,31 +82,26 @@ export class Moviedetails implements OnInit {
     }
   }
   loadUserData(movieId: number) {
-    this.isLoggedIn = this.authService.getUserbyToken() ? true : false;;
-    if (this.isLoggedIn) {
-      const user = this.authService.getUserbyToken();
-      if (user) {
-        this.User = user;
-        this.favouriteServices.getAllFavourites().subscribe({
-          next: (data) => {
-            const fav = data.find(x => x.movieId === movieId && x.userId === Number(this.User.id))
-            this.isFavorite = fav ? true : false;
-            if (data.length > 0)
-              this.lastFavId = Number(data[data.length - 1].id);
-          },
-          error: err => console.error('Error getting favourite', err)
-        });
-        // purchased
-        this.purchasedService.getPurchasedMovieByUserId(this.User.id, movieId).subscribe({
-          next: (data) => {
-            debugger
-            if (data.length > 0)
-              this.hasPurchased = true;
-          },
-          error: err => console.error('Error getting purchased', err)
-        });
-      }
+    const user = this.authService.getUserbyToken();
+    if (user) {
+      this.isLoggedIn = true;
+      this.User = user;
+      this.favouriteServices.checkFavourite(Number(this.User.id), Number(movieId)).subscribe({
+        next: (data) => {
+          this.isFavorite = data.length > 0 ? true : false;
+        },
+        error: err => console.error('Error getting favourite', err)
+      });
+      // purchased
+      this.purchasedService.checkPurchasedMovies(Number(this.User.id), Number(movieId)).subscribe({
+        next: (data) => {
+          debugger
+          this.hasPurchased = data.length > 0 ? true : false;
+        },
+        error: err => console.error('Error getting purchased', err)
+      });
     }
+
   }
 
   loadMovieFromFile(id: number): void {
@@ -216,10 +210,10 @@ export class Moviedetails implements OnInit {
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
     if (this.isFavorite) {
-      const favourite = { userId: Number(this.User.id), movieId: Number(this.movie.id), id: String(this.lastFavId + 1) } as IFavourite;
+      const favourite = { userId: Number(this.User.id), movieId: Number(this.movie.id) } as IFavourite;
       this.favouriteServices.addFavourite(favourite);
     } else {
-      this.favouriteServices.removeFavouritebyMovieAndUserId(this.User.id, this.movie.id);
+      this.favouriteServices.removeFavourite(Number(this.User.id), Number(this.movie.id));
       // alert(`❌ Removed "${this.movie.title}" from favorites.`);
     }
   }

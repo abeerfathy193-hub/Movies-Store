@@ -17,7 +17,7 @@ export class HeroSlider {
 
   ngOnInit(): void {
     this.movieService.getAllMovies().subscribe((data) => {
-      this.top5Movies = (this.sortByProperty(data, "vote_average")).slice(0, 5);
+      this.top5Movies = (this.sortByProperty(data, "vote_average", false)).slice(0, 5);
       this.top5Movies = this.top5Movies.map(movie => {
         const words = movie.overview.split(' ');
         const shortOverview = words.length > 50
