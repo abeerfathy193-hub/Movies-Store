@@ -36,7 +36,6 @@ export class Profile implements OnInit {
         dateOfBirth: this.user.dateOfBirth,
         gender: this.user.gender,
         phone: this.user.phone,
-        currentPassword: this.user.password,
       });
       this.profileForm.controls.email.disable();
     }
@@ -55,7 +54,7 @@ export class Profile implements OnInit {
     dateOfBirth: new FormControl('', [Validators.required, this.checkEntryDate()]),
     gender: new FormControl('', Validators.required),
     phone: new FormControl(''),
-    currentPassword: new FormControl('', [this.checkCurrentPassword(), Validators.required]),
+    currentPassword: new FormControl('', this.checkCurrentPassword()),
     newPassword: new FormControl('', Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/)),
     confirmPassword: new FormControl('', this.checkSimilarity())
   });
@@ -104,7 +103,7 @@ export class Profile implements OnInit {
     };
   }
   toggleChangePassword(event: PointerEvent) {
-    this.profileForm.controls.currentPassword.reset();
+    this.profileForm.controls.currentPassword.addValidators(Validators.required);
     this.profileForm.controls.newPassword.addValidators(Validators.required);
     this.profileForm.controls.confirmPassword.addValidators(Validators.required);
     event.preventDefault();
@@ -120,15 +119,16 @@ export class Profile implements OnInit {
       this.user.username = this.profileForm.value.username!.trim();
       this.user.gender = this.profileForm.value.gender!.trim();
       this.user.dateOfBirth = this.profileForm.value.dateOfBirth!.trim();
-      this.user.phone = this.profileForm.value.phone!.trim();
-      this.user.password = this.profileForm.value.newPassword ? this.profileForm.value.newPassword!.trim() : this.profileForm.value.currentPassword!.trim();
+      this.user.phone = this.profileForm.value.phone?.trim() ?? '';
+      if (this.showPasswordFields)
+        this.user.password = this.profileForm.value.newPassword ? this.profileForm.value.newPassword!.trim() : this.profileForm.value.currentPassword!.trim();
       this.authService.updateUserData(this.user).subscribe({
         next: (data) => {
           // console.log('updating user Successfully!');
           this.authService.UpdateUserToken(this.user);
           this.router.navigate(['/MainHome']);
         },
-        error: () => console.error('Erro in updating user data!')
+        error: (err) => console.error('Error in updating user data!', err)
       });
     }
   }

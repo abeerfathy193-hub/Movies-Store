@@ -62,7 +62,7 @@ export class AuthService {
     return this.myClient.post<IUser>(this.dataService.USERS_URL, user)
   }
   updateUserData(user: IUser) {
-    return this.myClient.put<IUser>(`${this.dataService.USERS_URL}/${user.id}`, user)
+    return this.myClient.put<IUser>(`${this.dataService.USERS_URL}/${Number(user.id)}`, user)
   }
   getNextId(list: IUser[]): number {
     if (list.length === 0) return 1;

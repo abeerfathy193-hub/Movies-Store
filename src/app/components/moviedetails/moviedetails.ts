@@ -211,7 +211,10 @@ export class Moviedetails implements OnInit {
     this.isFavorite = !this.isFavorite;
     if (this.isFavorite) {
       const favourite = { userId: Number(this.User.id), movieId: Number(this.movie.id) } as IFavourite;
-      this.favouriteServices.addFavourite(favourite);
+        this.favouriteServices.addFavourite(favourite).subscribe({
+          next: ()=> console.log('Adding in Favourite'),
+          error: (err) => console.error(err)          
+        });
     } else {
       this.favouriteServices.removeFavourite(Number(this.User.id), Number(this.movie.id));
       // alert(`❌ Removed "${this.movie.title}" from favorites.`);
