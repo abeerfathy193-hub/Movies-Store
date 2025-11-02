@@ -12,7 +12,8 @@
 
     <h1 class="title">{{ title }}</h1>
 
-    <p class="desc">{{ description }}</p>
+    <p class="desc"> {{ description.length > 150 ? (description | slice:0:150) + '...' : description}}</p>
+    <!-- <p class="desc">{{ description }}</p> -->
 
     <div class="actions">
 
@@ -25,13 +26,11 @@
         <i class="bi bi-cart4"></i>
         <span>Purchase</span>
       </a>
+      
       <div class="btn fav" aria-label="fav" (click)="toggleFavorite()">
-        <i class="bi" [ngClass]="isFavorite ? 'bi bi-heart-fill text-warning' : 'bi bi-heart text-secondary'">
+        <i class="bi" [ngClass]="isFavorite ? 'bi bi-suit-heart-fill text-warning' : 'bi bi-suit-heart-fill text-secondary'">
         </i>
       </div>
-      <!-- <a class="btn fav" aria-label="fav" (click)="toggleFavorite()">
-        <i class="bi bi-suit-heart-fill"></i>
-      </a> -->
 
     </div>
   </div>

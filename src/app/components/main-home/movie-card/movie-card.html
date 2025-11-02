@@ -1,5 +1,5 @@
 <div class="movie-grid" id="movieSection">
-    <div class="movie-card" *ngFor="let movie of pagedMovies">
+    <div class="movie-card" *ngFor="let movie of pagedMovies" [routerLink]="['/Moviedetails', movie.id]">
         <div class="poster-wrapper">
             <img [src]="movie.full_poster_path" alt="{{ movie.title }}" class="movie-img" />
             <div class="overlay"></div>

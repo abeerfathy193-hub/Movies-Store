@@ -52,8 +52,8 @@ export class HeroCard implements OnInit {
       if (this.isFavorite) {
         const favourite = { userId: Number(this.User.id), movieId: Number(this.id) } as IFavourite;
         this.favouriteServices.addFavourite(favourite).subscribe({
-          next: ()=> console.log('Adding in Favourite'),
-          error: (err) => console.error(err)          
+          next: () => console.log('Adding in Favourite'),
+          error: (err) => console.error(err)
         });
       } else {
         this.favouriteServices.removeFavourite(Number(this.User.id), Number(this.id));
