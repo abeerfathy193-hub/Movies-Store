@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   // Base URL for JSON server
-  private readonly BASE_URL = 'http://localhost:3001';
+  private readonly BASE_URL = 'https://moviestoredb-production.up.railway.app';
 
   // Endpoints
   public readonly USERS_URL = `${this.BASE_URL}/users`;
