@@ -124,7 +124,7 @@ export class Payment implements OnInit, OnDestroy {
 
     try {
       // Create payment intent
-      const resp = await fetch('https://localhost:7120/api/payment/create-payment-intent', {
+      const resp = await fetch('https://moviestore-production-7247.up.railway.app/api/payment/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: 1000 }),
