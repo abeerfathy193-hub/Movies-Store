@@ -8584,6 +8584,16 @@
       "id": "ff05",
       "userId": 20,
       "movieId": 1022256
+    },
+    {
+      "id": "b748",
+      "userId": 24,
+      "movieId": 278
+    },
+    {
+      "id": "6483",
+      "userId": 24,
+      "movieId": 1061474
     }
   ],
   "purchased": [
