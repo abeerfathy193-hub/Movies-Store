@@ -1,59 +1,100 @@
-# AngFilms
+### AngFilms — Project Structure Overview
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+A high-level map of folders and important files to help you navigate the codebase.
 
-## Development server
+## Root
+- `angular.json`: Angular workspace/build configuration (assets, styles, budgets, build targets).
+- `package.json` / `package-lock.json`: Dependencies and npm scripts.
+- `tsconfig.json` / `tsconfig.app.json` / `tsconfig.spec.json`: TypeScript configs for app and tests.
+- `README.md`: General Angular CLI usage.
+- `README-SETUP.md`: Setup, install, build, and required packages.
+- `README-STRUCTURE.md`: This document.
+- `public/`: Static assets copied as-is to the build output.
 
-To start a local development server, run:
+## public/
+- `favicon.ico`, images, and backgrounds used by the app.
 
-```bash
-ng serve
-```
+## src/
+- `index.html`: App host page; Angular mounts the root application here.
+- `main.ts`: Bootstraps the Angular application.
+- `styles.css`: Global styles for the project.
+- `app/`: Main application source.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## src/app/
+- `app.ts`: Root application component (standalone).
+- `app.html` / `app.css`: Template and styles for the root app component.
+- `app.routes.ts`: Application routes; defines navigation to pages and features.
+- `app.config.ts`: Providers and application-wide configuration.
+- `app.spec.ts`: Root component tests (if used).
 
-## Code scaffolding
+### src/app/components/
+Feature and UI components organized by domain. Notable groups:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- `main-home/`: Landing area and home features
+  - `home/`, `hero-slider/`, `hero-card/`, `movie-card/`, `aside/`, `about/`
+  - Each folder contains `*.ts` (component logic), `*.html` (template), and `*.css` (styles).
 
-```bash
-ng generate component component-name
-```
+- `moviedetails/`: Movie detail page features
+  - `castlist/`, `reviews/`, `videoplayer/`
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- `favourite-movies/`: Favorites listing and `favourite-movie-card/` component.
 
-```bash
-ng generate --help
-```
+- `purchased-movies/`: Purchased listing and `purchased-movie-card/` component.
 
-## Building
+- `dashboard/`: Admin/metrics area
+  - `dashboard-home/`, `dashboard-movies/`, `dashboard-reports/`, plus container `dashboard.*` files.
 
-To build the project run:
+- `login/`: Authentication UI
+  - `google-login/`, `facebook-login/`, and `login.*` files.
 
-```bash
-ng build
-```
+- `register/`: Registration page.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- `navbar/`, `footer/`, `not-found/`, `payment/`: Shared layout and pages.
 
-## Running unit tests
+Each component folder typically follows:
+- `component.ts`: Standalone component with metadata, inputs/outputs, lifecycle.
+- `component.html`: HTML template.
+- `component.css`: Component-scoped styles.
+- `*.spec.ts`: Unit tests when present.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### src/app/services/
+Application services for data-fetching and business logic:
+- `auth.service.ts`: Authentication, tokens, and user session logic.
+- `movie.service.ts` / `movies-tmdb.ts`: Movie data and TMDB API integrations.
+- `data-services.ts`: Generalized data access helpers.
+- `favourite-services.ts`: Favorites CRUD and state handling.
+- `purchased-services.ts`: Purchased movies CRUD and state.
+- `shared-services.ts`: Cross-cutting utilities shared across features.
 
-```bash
-ng test
-```
+### src/app/guards/
+Route guards controlling navigation:
+- `auth-guard.ts`: Blocks routes requiring authentication.
+- `dashboard-guard.ts`: Restricts dashboard access.
+- `home-guard.ts`, `login-guard.ts`: Home/login specific flows.
 
-## Running end-to-end tests
+### src/app/Interface/
+Type interfaces for app models:
+- `IUser.ts`, `IMovie.ts`, `IGenre.ts`, `IFavourite.ts`, `IPurchased.ts`.
 
-For end-to-end (e2e) testing, run:
+### src/app/utilities/
+- `Token.ts`: Token helpers (reading/writing/validation), used by auth flows.
 
-```bash
-ng e2e
-```
+### src/app/Database/
+- `db.json`: Local mock data or reference dataset for development/testing.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### src/app/helper/
+- `validitor/`: Validation helpers (naming implies validators; used by forms/components).
 
-## Additional Resources
+## Conventions
+- Components are standalone and grouped by feature to keep templates, styles, and logic close together.
+- Services encapsulate API calls and state transitions; components consume them via dependency injection.
+- Guards centralize navigation rules based on authentication and roles.
+- Interfaces define strong typing for movie, user, and other domain entities.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Where to Start
+1) Review `app.routes.ts` to understand navigation and feature boundaries.
+2) Explore feature folders under `src/app/components/` to locate page-specific code.
+3) Check services under `src/app/services/` for data sources and side effects.
+4) Verify guards in `src/app/guards/` to understand route access rules.
+
+
